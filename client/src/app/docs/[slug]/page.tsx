@@ -1,11 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { getDocBySlug } from '../../../lib/markdown';
 
-interface Params {
-    slug: string;
+interface PageParams {
+    params: any;
 }
 
-export default async function DocPage({ params }: { params: Params}) {
-  const { slug } = await params;
+export default async function DocPage({ params }: PageParams) {
+  const { slug } = params;
   const { contentHtml, title, description } = await getDocBySlug(slug);
 
   return (
