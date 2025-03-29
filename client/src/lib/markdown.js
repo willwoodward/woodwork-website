@@ -13,12 +13,12 @@ export async function getDocBySlug(slug) {
   // Use fs.promises.readFile instead of fs.readFileSync for async file reading
   const fileContents = await fs.promises.readFile(fullPath, 'utf8');
   const { data, content } = matter(fileContents);
-  const { title } = data;
+  const { title, description } = data;
 
   const processedContent = await remark().use(html).process(content);
   const contentHtml = processedContent.toString();
 
-  return { slug, contentHtml, title, ...data };
+  return { slug, contentHtml, title, description, ...data };
 }
 
 export function getAllDocs() {

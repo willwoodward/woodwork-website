@@ -24,3 +24,39 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+/* Custom CSS for markdown docs */
+.docs #main-title {
+  font-size: 3rem;
+}
+
+.docs #content h1 {
+  font-size: 2rem;
+  padding-top: 2rem;
+}
+
+.docs #content h2 {
+  font-size: 1.5rem;
+}
+
+.docs #content > * {
+  padding-bottom: 10px;
+}
+
+.docs #content code {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding-left: 4px;
+  padding-right: 4px;
+  border-radius: 4px;
+}
+
+.docs #content pre {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.docs #content pre > code {
+  border-left-width: 4px;
+  padding: 8px;
+}
