@@ -20,3 +20,18 @@ export async function getDocBySlug(slug) {
 
   return { slug, contentHtml, title, ...data };
 }
+
+export function getAllDocs() {
+    return fs.readdirSync(docsDirectory)
+      .filter(file => file.endsWith('.md'))
+      .map(file => {
+        const fullPath = path.join(docsDirectory, file);
+        const fileContents = fs.readFileSync(fullPath, 'utf8');
+        const { data } = matter(fileContents);
+  
+        return {
+          slug: file.replace('.md', ''),
+          title: data.title || 'Untitled'
+        };
+    });
+}
