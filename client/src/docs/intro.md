@@ -1,7 +1,7 @@
 ---
-title: Getting Started
+title: Intro
 description: A guide on installation, setup, and next steps.
-index: 0
+index: 1
 ---
 
 # Installation

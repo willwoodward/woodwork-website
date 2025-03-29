@@ -13,12 +13,12 @@ export async function getDocBySlug(slug) {
   // Use fs.promises.readFile instead of fs.readFileSync for async file reading
   const fileContents = await fs.promises.readFile(fullPath, 'utf8');
   const { data, content } = matter(fileContents);
-  const { title, description } = data;
+  const { title, description, index } = data;
 
   const processedContent = await remark().use(html).process(content);
   const contentHtml = processedContent.toString();
 
-  return { slug, contentHtml, title, description, ...data };
+  return { slug, contentHtml, title, description, index, ...data };
 }
 
 export function getAllDocs() {
@@ -31,7 +31,8 @@ export function getAllDocs() {
   
         return {
           slug: file.replace('.md', ''),
-          title: data.title || 'Untitled'
+          title: data.title || 'Untitled',
+          index: data.index || 0
         };
     });
 }
