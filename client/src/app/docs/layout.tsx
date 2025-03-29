@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getAllDocs } from '../../lib/markdown'; // Adjust the path if needed
+import { getAllDocs } from '../../lib/markdown';
 
 export default function DocsLayout({ children }: { children: React.ReactNode }) {
     const docs = getAllDocs();
@@ -13,7 +13,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                         .sort((a, b) => a.index - b.index)
                         .map(({ slug, title }) => (
                         <li key={slug} className='w-full'>
-                            <Link href={`/docs/${slug}`} className='px-2 py-1 hover:bg-white/10 rounded-lg w-full block'>
+                            <Link href={`/docs/${slug}`} className='px-2 py-1 rounded-lg w-full block hover:bg-white/10'>
                                 {title}
                             </Link>
                         </li>
