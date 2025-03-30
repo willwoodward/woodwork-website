@@ -24,11 +24,13 @@ jobs:
           cd client
           npm run build
 
+      - name: Install Netlify CLI
+        run: npm install -g netlify-cli
+
       - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v2
-        with:
-          publish-dir: ./client/.next
-          production-branch: main
-          netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          site-id: ${{ secrets.NETLIFY_SITE_ID }}
-          deploy-message: "Deployment from GitHub Actions"
+        run: |
+          cd client
+          netlify deploy --dir=.next --functions=.netlify/functions --prod
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
