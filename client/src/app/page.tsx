@@ -1,9 +1,32 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function Home() {
   const [isLineHovered, setIsLineHovered] = useState(false);
+  const [isButtonActive, setIsButtonActive] = useState(false);
+  const timeoutRef = useRef(null);
+
+  useEffect(() => {
+    // Clear existing timeout if any
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    if (isLineHovered) {
+      // When line animation starts, set a timeout for when it should reach the button
+      timeoutRef.current = setTimeout(() => {
+        setIsButtonActive(true);
+      }, 1200); // Slightly less than the 1.5s animation to ensure smooth transition
+    } else {
+      // When hover ends, immediately reset button state
+      setIsButtonActive(false);
+    }
+
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, [isLineHovered]);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between bg-gradient-to-b from-gray-900 to-black">
@@ -130,58 +153,91 @@ export default function Home() {
             >
               {/* Outer shadow */}
               {/* Shadow/base layer */}
-              <div className="absolute inset-0 bg-blue-800 rounded-lg translate-y-2 translate-z-0"></div>
+              <div
+                className="absolute inset-0 rounded-lg translate-y-2 translate-z-0"
+                style={{
+                  transition: "background-color 1.5s ease-out",
+                  backgroundColor: isButtonActive ? "#1e40af" : "#4b5563",
+                }}
+              ></div>
 
               {/* Main button body */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg shadow-lg transform -translate-y-1">
-                {/* Top surface with inner shadow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-600 rounded-lg border-t border-blue-300/30 flex items-center justify-center">
-                  {/* AI Icon */}
-                </div>
+              <div
+                className="absolute inset-0 rounded-lg shadow-lg transform -translate-y-1"
+                style={{
+                  background:
+                    "linear-gradient(to bottom right, #4b5563, #1f2937)",
+                }}
+              ></div>
 
-                {/* Side edge highlights */}
-                <div className="absolute right-0 inset-y-0 w-1 bg-purple-300/20 rounded-r-lg"></div>
-                <div className="absolute bottom-0 inset-x-0 h-1 bg-blue-900/50 rounded-b-lg"></div>
-              </div>
+              {/* Colored gradient (fades in/out) */}
+              <div
+                className="absolute inset-0 rounded-lg shadow-lg transform -translate-y-1"
+                style={{
+                  background:
+                    "linear-gradient(to bottom right, #3b82f6, #8b5cf6)",
+                  opacity: isButtonActive ? 1 : 0,
+                  transition: "opacity 0.5s ease-out",
+                }}
+              ></div>
+
+              {/* Side edge highlights */}
+              <div
+                className="absolute right-0 inset-y-0 w-1 rounded-r-lg"
+                style={{
+                  transition: "background-color 1.5s ease-out",
+                  backgroundColor: isButtonActive
+                    ? "rgba(216, 180, 254, 0.2)"
+                    : "rgba(209, 213, 219, 0.2)",
+                }}
+              ></div>
+              <div
+                className="absolute bottom-0 inset-x-0 h-1 bg-blue-900/50 rounded-b-lg"
+                style={{
+                  transition: "background-color 1.5s ease-out",
+                  backgroundColor: isButtonActive
+                    ? "rgba(30, 58, 138, 0.5)"
+                    : "rgba(75, 85, 99, 0.5)",
+                }}
+              ></div>
             </div>
           </div>
         </div>
-        <p className="text-center text-gray-400 mt-2 max-w-xs pt-8">
-          Turn your declarative code into powerful AI agents that adapt and
-          learn.
-        </p>
+      </div>
+      <p className="text-center text-gray-400 mt-2 max-w-xs pt-8">
+        Turn your declarative code into powerful AI agents that adapt and learn.
+      </p>
 
-        {/* Features section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
-          <div className="rounded-lg bg-gray-800/50 p-6">
-            <h3 className="mb-2 text-2xl font-bold text-blue-400">
-              Declarative Configuration
-            </h3>
-            <p className="text-gray-300">
-              Use our custom IaC language to define every aspect of your AI
-              agents with clean, readable code.
-            </p>
-          </div>
+      {/* Features section */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+        <div className="rounded-lg bg-gray-800/50 p-6">
+          <h3 className="mb-2 text-2xl font-bold text-blue-400">
+            Declarative Configuration
+          </h3>
+          <p className="text-gray-300">
+            Use our custom IaC language to define every aspect of your AI agents
+            with clean, readable code.
+          </p>
+        </div>
 
-          <div className="rounded-lg bg-gray-800/50 p-6">
-            <h3 className="mb-2 text-2xl font-bold text-blue-400">
-              Seamless Integration
-            </h3>
-            <p className="text-gray-300">
-              Connect your agents to databases, APIs, and other tools with
-              built-in connectors.
-            </p>
-          </div>
+        <div className="rounded-lg bg-gray-800/50 p-6">
+          <h3 className="mb-2 text-2xl font-bold text-blue-400">
+            Seamless Integration
+          </h3>
+          <p className="text-gray-300">
+            Connect your agents to databases, APIs, and other tools with
+            built-in connectors.
+          </p>
+        </div>
 
-          <div className="rounded-lg bg-gray-800/50 p-6">
-            <h3 className="mb-2 text-2xl fo</div>nt-bold text-blue-400">
-              Version Control
-            </h3>
-            <p className="text-gray-300">
-              Track changes, collaborate, and roll back to previous versions of
-              your agents.
-            </p>
-          </div>
+        <div className="rounded-lg bg-gray-800/50 p-6">
+          <h3 className="mb-2 text-2xl fo</div>nt-bold text-blue-400">
+            Version Control
+          </h3>
+          <p className="text-gray-300">
+            Track changes, collaborate, and roll back to previous versions of
+            your agents.
+          </p>
         </div>
       </div>
     </main>
