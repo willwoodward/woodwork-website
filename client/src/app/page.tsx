@@ -5,7 +5,7 @@ import { useState, useEffect, useRef } from "react";
 export default function Home() {
   const [isLineHovered, setIsLineHovered] = useState(false);
   const [isButtonActive, setIsButtonActive] = useState(false);
-  const timeoutRef = useRef(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     // Clear existing timeout if any
@@ -52,12 +52,12 @@ export default function Home() {
           Infrastructure as Code.
         </p>
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <button className="rounded-md bg-blue-600 px-6 py-3 text-base font-medium text-white shadow-md transition hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900">
+            <a href="/" className="rounded-md bg-blue-600 px-6 py-3 text-base font-medium text-white shadow-md transition hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900">
             Get Started
-          </button>
-          <button className="rounded-md border border-gray-600 bg-gray-800 px-6 py-3 text-base font-medium text-gray-200 shadow-sm transition hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900">
+            </a>
+            <a href="/docs" className="rounded-md border border-gray-600 bg-gray-800 px-6 py-3 text-base font-medium text-gray-200 shadow-sm transition hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900">
             Documentation
-          </button>
+            </a>
         </div>
       </div>
 
@@ -107,25 +107,19 @@ export default function Home() {
               <div className="rounded-xl bg-gradient-to-r from-blue-500/20 to-purple-500/20 p-0.5 shadow-xl">
                 <pre className="overflow-x-auto rounded-lg bg-gray-900/70 p-4 text-left">
                   <code className="font-mono text-xs text-gray-100">
-                    {`// agent.wood
-    agent CustomerSupport {
-      model: "gpt-4",
-      temperature: 0.</div>7,
-      
-      knowledge: [
-        "./docs/products.md",
-        "./docs/policies.md"
-      ],
-      
-      tools: [
-        OrderDatabase,
-        EmailService
-      ],
-      
-      behavior: {
-        friendly: true,
-        proactive: true
-      }
+                    {`// main.ww
+    model = llm openai {
+      model = "gpt-4o"
+      api_key = $OPENAI_API_KEY
+    }
+    
+    endpoint = api web {
+      url = "http://localhost:3000"
+      documentation = "endpoint.txt"
+    }
+    
+    in = input command_line {
+      to: model
     }`}
                   </code>
                 </pre>
@@ -157,7 +151,7 @@ export default function Home() {
                 className="absolute inset-0 rounded-lg translate-y-2 translate-z-0"
                 style={{
                   transition: "background-color 1.5s ease-out",
-                  backgroundColor: isButtonActive ? "#1e40af" : "#4b5563",
+                  backgroundColor: isButtonActive ? "#1e40af" : "#374151",
                 }}
               ></div>
 
@@ -166,7 +160,7 @@ export default function Home() {
                 className="absolute inset-0 rounded-lg shadow-lg transform -translate-y-1"
                 style={{
                   background:
-                    "linear-gradient(to bottom right, #4b5563, #1f2937)",
+                    "linear-gradient(to bottom right, #6b7280, #374151)",
                 }}
               ></div>
 
@@ -204,42 +198,11 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <p className="text-center text-gray-400 mt-2 max-w-xs pt-8">
+      <p className="text-center text-gray-400 mt-2 max-w-xs pt-8 pb-32">
         Turn your declarative code into powerful AI agents that adapt and learn.
       </p>
 
-      {/* Features section */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
-        <div className="rounded-lg bg-gray-800/50 p-6">
-          <h3 className="mb-2 text-2xl font-bold text-blue-400">
-            Declarative Configuration
-          </h3>
-          <p className="text-gray-300">
-            Use our custom IaC language to define every aspect of your AI agents
-            with clean, readable code.
-          </p>
-        </div>
-
-        <div className="rounded-lg bg-gray-800/50 p-6">
-          <h3 className="mb-2 text-2xl font-bold text-blue-400">
-            Seamless Integration
-          </h3>
-          <p className="text-gray-300">
-            Connect your agents to databases, APIs, and other tools with
-            built-in connectors.
-          </p>
-        </div>
-
-        <div className="rounded-lg bg-gray-800/50 p-6">
-          <h3 className="mb-2 text-2xl fo</div>nt-bold text-blue-400">
-            Version Control
-          </h3>
-          <p className="text-gray-300">
-            Track changes, collaborate, and roll back to previous versions of
-            your agents.
-          </p>
-        </div>
-      </div>
+      
     </main>
   );
 }
