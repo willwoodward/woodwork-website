@@ -29,34 +29,96 @@ body {
 /* Custom CSS for markdown docs */
 .docs #main-title {
   font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+}
+
+.docs #content {
+  max-width: 80ch;
+  line-height: 1.6;
 }
 
 .docs #content h1 {
   font-size: 2rem;
-  padding-top: 2rem;
+  font-weight: 600;
+  padding-top: 2.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+  padding-bottom: 0.5rem;
 }
 
 .docs #content h2 {
   font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 
-.docs #content > * {
-  padding-bottom: 10px;
+.docs #content h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.docs #content p {
+  margin-bottom: 1.25rem;
+}
+
+.docs #content ul, .docs #content ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.docs #content li {
+  margin-bottom: 0.5rem;
 }
 
 .docs #content code {
-  background-color: rgba(255, 255, 255, 0.1);
-  padding-left: 4px;
-  padding-right: 4px;
+  font-family: var(--font-mono);
+  background-color: rgba(128, 128, 128, 0.1);
+  padding: 0.2rem 0.4rem;
   border-radius: 4px;
+  font-size: 0.9em;
 }
 
 .docs #content pre {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 1.5rem 0;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: rgba(20, 20, 20, 0.95);
 }
 
 .docs #content pre > code {
-  border-left-width: 4px;
-  padding: 8px;
+  display: block;
+  padding: 1rem;
+  border-left: 4px solid rgba(0, 140, 255, 0.6);
+  background-color: transparent;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.docs #content a {
+  color: #4f46e5;
+  text-decoration: none;
+}
+
+.docs #content a:hover {
+  text-decoration: underline;
+}
+
+.docs #content blockquote {
+  border-left: 4px solid rgba(128, 128, 128, 0.3);
+  padding-left: 1rem;
+  margin-left: 0;
+  margin-right: 0;
+  color: rgba(var(--foreground), 0.8);
+}
+
+@media (prefers-color-scheme: dark) {
+  .docs #content blockquote {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
 }
