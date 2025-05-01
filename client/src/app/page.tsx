@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 
 export default function Home() {
   const [isLineHovered, setIsLineHovered] = useState(false);
@@ -52,12 +53,12 @@ export default function Home() {
           Infrastructure as Code.
         </p>
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <a href="/" className="rounded-md bg-blue-600 px-6 py-3 text-base font-medium text-white shadow-md transition hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900">
-            Get Started
-            </a>
-            <a href="/docs" className="rounded-md border border-gray-600 bg-gray-800 px-6 py-3 text-base font-medium text-gray-200 shadow-sm transition hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900">
-            Documentation
-            </a>
+            <Link href="/" className="rounded-md bg-blue-600 px-6 py-3 text-base font-medium text-white shadow-md transition hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900">
+              Get Started
+            </Link>
+            <Link href="/docs" className="rounded-md border border-gray-600 bg-gray-800 px-6 py-3 text-base font-medium text-white shadow-sm transition hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900">
+              Documentation
+            </Link>
         </div>
       </div>
 
