@@ -5,7 +5,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
     const docs = getAllDocs();
 
     return (
-        <div className="flex h-[100vh]">
+        <div className="flex h-full">
             <nav className="w-48 px-2 py-4 border-r border-gray-300 h-full">
                 <h2 className="text-lg font-bold mb-4 px-2">Docs</h2>
                 <ul className="space-y-2">
