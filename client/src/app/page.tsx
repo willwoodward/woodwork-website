@@ -45,15 +45,21 @@ export default function Home() {
         className="container mx-auto px-6 text-center flex flex-col items-center justify-center"
         style={{ minHeight: "calc(100vh - 4rem)" }}
       >
-        <h1 className="mb-4 text-5xl font-extrabold tracking-tight text-white md:text-6xl">
-          Woodwork<span className="text-blue-400">Engine</span>
+        <h1 className="mb-4 text-5xl font-extrabold tracking-tight md:text-6xl">
+          <span className="text-white">Woodwork</span>
+          <span style={{
+            background: "linear-gradient(90deg, #57ADFF, #6F8FFE, #A95CFF)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text"
+          }}>Engine</span>
         </h1>
         <p className="mx-auto mb-8 max-w-2xl text-xl text-gray-300">
           A powerful framework for building and deploying AI agents using
           Infrastructure as Code.
         </p>
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Link href="/" className="rounded-md bg-blue-600 px-6 py-3 text-base font-medium text-white shadow-md transition hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900">
+            <Link href="/" className="rounded-md bg-[#57ADFF] px-6 py-3 text-base font-medium text-white shadow-md transition hover:bg-[#77CDFF] focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900">
               Get Started
             </Link>
             <Link href="/docs" className="rounded-md border border-gray-600 bg-gray-800 px-6 py-3 text-base font-medium text-white shadow-sm transition hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900">
