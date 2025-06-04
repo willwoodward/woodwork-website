@@ -2,16 +2,13 @@
 
 import { getDocBySlug } from '../../../lib/markdown';
 
-interface DocPageProps {
-  params: {
-    slug: string[];
-  };
-}
+type Params = Promise<{ slug: string[] }>;
 
-export default async function DocPage({ params }: DocPageProps) {
-  const slugArray = params.slug;
-  const slug = slugArray.join('/');
-  const { contentHtml, title, description } = await getDocBySlug(slug);
+export default async function DocPage({ params }: { params: Params }) {
+  const { slug } = await params;  // Await here because params is a Promise
+  const slugPath = slug.join('/');
+
+  const { contentHtml, title, description } = await getDocBySlug(slugPath);
 
   return (
     <div className="docs">
