@@ -21,18 +21,50 @@ export async function getDocBySlug(slug) {
   return { slug, contentHtml, title, description, index, ...data };
 }
 
-export function getAllDocs() {
-    return fs.readdirSync(docsDirectory)
-      .filter(file => file.endsWith('.md'))
-      .map(file => {
-        const fullPath = path.join(docsDirectory, file);
-        const fileContents = fs.readFileSync(fullPath, 'utf8');
-        const { data } = matter(fileContents);
+// export function getAllDocs() {
+//     return fs.readdirSync(docsDirectory)
+//       .filter(file => file.endsWith('.md'))
+//       .map(file => {
+//         const fullPath = path.join(docsDirectory, file);
+//         const fileContents = fs.readFileSync(fullPath, 'utf8');
+//         const { data } = matter(fileContents);
   
-        return {
-          slug: file.replace('.md', ''),
-          title: data.title || 'Untitled',
-          index: data.index || 0
-        };
-    });
+//         return {
+//           slug: file.replace('.md', ''),
+//           title: data.title || 'Untitled',
+//           index: data.index || 0
+//         };
+//     });
+// }
+
+function getAllMarkdownFiles(dir, baseDir = dir) {
+  let results = [];
+
+  const list = fs.readdirSync(dir);
+  list.forEach(file => {
+    const filePath = path.join(dir, file);
+    const stat = fs.statSync(filePath);
+
+    if (stat && stat.isDirectory()) {
+      results = results.concat(getAllMarkdownFiles(filePath, baseDir));
+    } else if (file.endsWith('.md')) {
+      const relativePath = path.relative(baseDir, filePath);
+      const slug = relativePath.replace(/\.md$/, '').replace(/\\/g, '/'); // handle Windows
+
+      const fileContents = fs.readFileSync(filePath, 'utf8');
+      const { data } = matter(fileContents);
+
+      results.push({
+        slug,
+        title: data.title || 'Untitled',
+        index: data.index || 0
+      });
+    }
+  });
+
+  return results;
+}
+
+export function getAllDocs() {
+  return getAllMarkdownFiles(docsDirectory);
 }

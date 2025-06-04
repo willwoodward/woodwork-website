@@ -13,7 +13,7 @@ export default function Navbar() {
           <Link href="/" className="px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-100 transition-all">Home</Link>
         </li>
         <li>
-          <Link href="/docs" className="px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-100 transition-all">Docs</Link>
+          <Link href="/docs/getting-started" className="px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-100 transition-all">Docs</Link>
         </li>
       </ul>
     </nav>

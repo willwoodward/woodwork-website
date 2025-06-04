@@ -62,7 +62,7 @@ export default function Home() {
             <Link href="/" className="rounded-md bg-[#57ADFF] px-6 py-3 text-base font-medium text-white shadow-md transition hover:bg-[#77CDFF] focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900">
               Get Started
             </Link>
-            <Link href="/docs" className="rounded-md border border-gray-600 bg-gray-800 px-6 py-3 text-base font-medium text-white shadow-sm transition hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900">
+            <Link href="/docs/getting-started" className="rounded-md border border-gray-600 bg-gray-800 px-6 py-3 text-base font-medium text-white shadow-sm transition hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900">
               Documentation
             </Link>
         </div>
