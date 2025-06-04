@@ -22,9 +22,9 @@ const folderConfig: Record<
   string,
   { displayName: string; order: number }
 > = {
-  tutorials: { displayName: "Tutorials", order: 2 },
-  explanation: { displayName: "Explanation", order: 1 },
-  "how-to": { displayName: "How-to Guides", order: 3 },
+  tutorials: { displayName: "Tutorials", order: 1 },
+  explanation: { displayName: "Explanation", order: 3 },
+  "how-to": { displayName: "How-to Guides", order: 2 },
   reference: { displayName: "Technical Reference", order: 4 },
 };
 
