@@ -78,8 +78,8 @@ export function DocsSidebar({ groupedDocs }: Props) {
     const activeSlug = pathname?.replace(/^\/docs\//, '');
 
     // Separate folders and docs
-    const folders = Object.entries(tree).filter(([_, v]) => !('__doc' in v));
-    const docs = Object.entries(tree).filter(([_, v]) => '__doc' in v);
+    const folders = Object.entries(tree).filter(([, v]) => !('__doc' in v));
+    const docs = Object.entries(tree).filter(([, v]) => '__doc' in v);
 
     // Sort docs by their index property ascending
     docs.sort(([, a], [, b]) => {
@@ -99,7 +99,7 @@ export function DocsSidebar({ groupedDocs }: Props) {
     return (
         <ul className="pl-2 space-y-1">
         {/* Render files first */}
-        {docs.map(([_, value]) => {
+        {docs.map(([, value]) => {
             const doc = (value as { __doc: Doc }).__doc;
             const isActive = doc.slug === activeSlug;
 
