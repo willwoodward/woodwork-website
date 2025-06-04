@@ -2,13 +2,15 @@
 
 import { getDocBySlug } from '../../../lib/markdown';
 
-interface PageParams {
-  params: { slug: string[] }; // Catch-all routes give an array
+interface DocPageProps {
+  params: {
+    slug: string[];
+  };
 }
 
-export default async function DocPage({ params }: PageParams) {
+export default async function DocPage({ params }: DocPageProps) {
   const slugArray = params.slug;
-  const slug = slugArray.join('/'); // Reconstruct the relative path
+  const slug = slugArray.join('/');
   const { contentHtml, title, description } = await getDocBySlug(slug);
 
   return (
