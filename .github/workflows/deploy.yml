@@ -28,13 +28,12 @@ jobs:
       - name: Install Netlify CLI
         run: npm install -g netlify-cli
 
-      - name: Run Netlify Build
+      - name: Run Netlify Build (Dry Run)
         env:
           NODE_ENV: production
           NEXT_TELEMETRY_DISABLED: 1
-        run: |
-          cd client
-          netlify build --dry
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: netlify build --site $NETLIFY_SITE_ID
 
   deploy:
     name: Deploy to Netlify
