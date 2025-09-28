@@ -1,12 +1,16 @@
-name: Dry Run Netlify Build
+name: Dry Run Build
 
 on:
   pull_request:
   workflow_dispatch:
 
 jobs:
-  netlify-build:
+  dry-run:
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: client
 
     steps:
       - name: Checkout repository
@@ -18,18 +22,10 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: |
-          cd client
-          npm ci
+        run: npm ci
 
-      - name: Install Netlify CLI
-        run: npm install -g netlify-cli
-
-      - name: Run Netlify Build (Dry Run)
+      - name: Run Build (Dry Run)
         env:
           NODE_ENV: production
           NEXT_TELEMETRY_DISABLED: 1
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        run: |
-          cd client
-          netlify build --context production --dry
+        run: npm run build
