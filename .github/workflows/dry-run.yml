@@ -2,9 +2,7 @@ name: Dry Run Netlify Build
 
 on:
   pull_request:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   netlify-build:
