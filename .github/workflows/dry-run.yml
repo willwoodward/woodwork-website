@@ -1,4 +1,4 @@
-name: Dry Run Build
+name: Dry Run Netlify Build
 
 on:
   pull_request:
@@ -7,25 +7,22 @@ on:
       - main
 
 jobs:
-  dry-run-build:
+  netlify-build:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: client
-
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          cd client
+          npm ci
 
       - name: Install Netlify CLI
         run: npm install -g netlify-cli
@@ -34,4 +31,6 @@ jobs:
         env:
           NODE_ENV: production
           NEXT_TELEMETRY_DISABLED: 1
-        run: netlify build
+        run: |
+          cd client
+          netlify build
