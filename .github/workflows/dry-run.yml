@@ -25,13 +25,6 @@ jobs:
       - name: Install Netlify CLI
         run: npm install -g netlify-cli
 
-      - name: Link Netlify Site
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        run: |
-          cd client
-          netlify link --auth $NETLIFY_AUTH_TOKEN ${{ secrets.NETLIFY_SITE_ID }}
-
       - name: Run Netlify Build (Dry Run)
         env:
           NODE_ENV: production
