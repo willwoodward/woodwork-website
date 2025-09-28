@@ -32,8 +32,10 @@ jobs:
         env:
           NODE_ENV: production
           NEXT_TELEMETRY_DISABLED: 1
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        run: netlify build --site $NETLIFY_SITE_ID
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          cd client
+          netlify build --context production --dry
 
   deploy:
     name: Deploy to Netlify
