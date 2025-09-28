@@ -34,7 +34,7 @@ jobs:
           NEXT_TELEMETRY_DISABLED: 1
         run: |
           cd client
-          netlify build
+          netlify build --dry
 
   deploy:
     name: Deploy to Netlify
